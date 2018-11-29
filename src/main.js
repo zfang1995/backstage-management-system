@@ -5,6 +5,7 @@ import router from './router'
 import axios from 'axios'
 import 'babel-polyfill'
 import localforage from 'localforage'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 Vue.prototype.$axios = axios
