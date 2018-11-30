@@ -1,24 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import {getComponentName} from './utils'
 
 Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      redirect: '/dashboard'
-    },
-    {
-      path: '/',
-      component: resolve => require(['@/components/dashboard/dashboard.vue'], resolve),
+      path: '',
       meta: { title: '自述文件' },
+      alias: ['/'],
+      redirect: '/dashboard',
+      component: resolve => require(['@/components/homepage/hoempage.vue'], resolve),
       children: [
         {
           path: '/dashboard',
           component: resolve => require(['@/components/dashboard/dashboard.vue'], resolve),
-          meta: { title: '系统首页' }
+          meta: { title: 'dashboard' }
         }
-      ] }
+      ] 
+    },
     //     {
     //       path: '/icon',
     //       component: resolve => require(['../components/page/Icon.vue'], resolve),
@@ -76,24 +76,24 @@ export default new Router({
     //       meta: { title: '权限测试', permission: true }
     //     },
     //     {
-    //       path: '/404',
-    //       component: resolve => require(['../components/page/404.vue'], resolve),
-    //       meta: { title: '404' }
-    //     },
-    //     {
     //       path: '/403',
     //       component: resolve => require(['../components/page/403.vue'], resolve),
     //       meta: { title: '403' }
     //     }
     //   ]
     // },
-    // {
-    //   path: '/login',
-    //   component: resolve => require(['../components/page/Login.vue'], resolve)
-    // },
-    // {
-    //   path: '*',
-    //   redirect: '/404'
-    // }
+    {
+      path: '/login',
+      component: resolve => require(['../components/login_page/login_page.vue'], resolve)
+    },
+    {
+      path: '*',
+      redirect: '/404'
+    },
+    {
+      path: '/404',
+      component: resolve => require(['../components/404_page.vue'], resolve),
+      meta: { title: '404' }
+    }
   ]
 })

@@ -25,6 +25,7 @@ yarn run lint
 * vue-router
 * vuetify
 * postcss
+* mocha
 
 # 文件系统架构
 ```
@@ -34,9 +35,10 @@ yarn run lint
 | - assets\ //
 | - components\ // 存放 APP.VUE 的子组件和其后代组件所需的公用组件
 | | |
+| | - common\ // 存放全局的公用组件
 | | - child-component-a\
 | | | |
-| | | - components\ // 存放 child-component-a.vue 的子组件和其后代组件所需的公用组件
+| | | - components\ // 存放 child-component-a.vue 的子组件
 | | | - child-component-a.vue
 | | |
 | | - child-component-b\
