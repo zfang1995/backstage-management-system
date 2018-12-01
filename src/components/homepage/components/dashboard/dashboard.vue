@@ -1,5 +1,7 @@
-<template lang="pug">
-    div are you ok?!
+<template>
+    <div class="test">
+        areyouok?
+    </div>
 </template>
 
 <script>

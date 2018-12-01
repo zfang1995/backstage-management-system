@@ -1,7 +1,7 @@
 <template>
-  <v-app id="app">
-    <router-view><router-view>
-  </v-app>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 <script>
   export default {
@@ -11,6 +11,5 @@
   }
 </script>
 <style lang="postcss">
-.sss
-  color: red
+/* @import 'vuetify/dist/vuetify.min.css' */
 </style>

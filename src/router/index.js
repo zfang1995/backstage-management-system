@@ -1,20 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {getComponentName} from './utils'
 
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '',
+      component: () => import("../components/homepage/homepage.vue"),
       meta: { title: '自述文件' },
-      alias: ['/'],
       redirect: '/dashboard',
-      component: resolve => require(['@/components/homepage/hoempage.vue'], resolve),
       children: [
         {
           path: '/dashboard',
-          component: resolve => require(['@/components/dashboard/dashboard.vue'], resolve),
+          component: () => import("../components/homepage/components/dashboard/dashboard.vue"),
           meta: { title: 'dashboard' }
         }
       ] 
@@ -92,8 +90,8 @@ export default new Router({
     },
     {
       path: '/404',
-      component: resolve => require(['../components/404_page.vue'], resolve),
+      component: import('../components/404_page/404.vue'),
       meta: { title: '404' }
-    }
+    } 
   ]
 })

@@ -1,8 +1,7 @@
 <template>
-    <div>
-    <v-navigation-drawer app>
+    <v-navigation-drawer fixed app permanent width="200">
       <v-list dense>
-        <v-list-tile >
+        <v-list-tile>
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -20,11 +19,15 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app></v-toolbar>
-    <v-content>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
-    </v-content>
-    </div>
 </template>
+
+<script>
+
+export default {
+  data () {
+    return {
+
+    }
+  }
+}
+</script>
