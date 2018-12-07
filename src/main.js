@@ -7,7 +7,9 @@ import axios from 'axios'
 import 'babel-polyfill'
 import localforage from 'localforage'
 import 'vuetify/dist/vuetify.min.css'
+import vueComponentPopup from './utils/vue-component-popup'
 
+Vue.use(vueComponentPopup)
 Vue.use(Vuetify)
 Vue.prototype.$axios = axios
 Vue.prototype.$localforage = localforage

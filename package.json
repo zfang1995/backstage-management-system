@@ -13,6 +13,7 @@
     "babel-polyfill": "^6.26.0",
     "localforage": "1.7.3",
     "mavon-editor": "^2.6.17",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.17",
     "vue-cropperjs": "^2.2.2",
     "vue-quill-editor": "^3.0.6",

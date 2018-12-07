@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     cancelThisComponent () {
-      console.log(this.$store)
       this.$store.commit('CANCEL_A_PROMPT_COMPONENT', this.component)
     }
   }

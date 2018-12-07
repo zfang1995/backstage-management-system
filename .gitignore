@@ -2,6 +2,7 @@
 node_modules
 /dist
 playground
+/utils/*/.git
 
 # local env files
 .env.local
