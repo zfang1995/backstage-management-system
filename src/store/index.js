@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import vuex from 'vuex'
-import appPrompt from './modules/appPrompt'
+import {i18n_store} from './modules/i18n'
+
 
 Vue.use(vuex)
 export default new vuex.Store({
   modules: {
-    appPrompt
+    i18n_store
+  },
+  state: {
+    
   }
 })

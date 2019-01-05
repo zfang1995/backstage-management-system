@@ -1,17 +1,17 @@
 <template>
-  <div class="yellow">
+  <div>
     test propmt
   </div>
 </template>
 
 <script>
   export default {
-    
+    props: ['thisComponent'],
+    mounted () {
+    }
   }
 </script>
 
 <style scoped>
-.yellow {
-  color: yellow;
-}
+
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <a-locale-provider :locale="locale">
+      <router-view></router-view>
+   </a-locale-provider> 
   </div>
 </template>
 <script>
-  import test from '@/components/common/test.vue'
+import {mapGetters} from 'vuex'
 
   export default {
     name: 'app',
@@ -12,13 +14,21 @@
 
     },
     mounted() {
-      this.$popUp({vueComponent: test, wrapperStyle: {'background-color': 'red'}})
-      .then(
-        () => {this.$popUp({vueComponent: test, wrapperStyle: {'background-color': 'red'}})}
-      )
+
+    },
+    data() {
+      return {
+
+      }
+    },
+    computed: {
+      ...mapGetters(['locale'])
     }
   }
 </script>
-<style lang="postcss">
-/* @import 'vuetify/dist/vuetify.min.css' */
+<style>
+#app {
+  height: 100vh;
+  width: 100vw;
+}
 </style>

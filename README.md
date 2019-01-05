@@ -1,5 +1,5 @@
 # my-management-system
-
+临摹自 https://github.com/PanJiaChen/vue-element-admin ，使用 ant-design-vue 代替了 element-ui。
 ## Project setup
 ```
 yarn install
@@ -21,13 +21,18 @@ yarn run lint
 ```
 
 ## 技术栈
+### 视图模型
 * vue
 * vue-router
-* vuetify
+* vue-ant-design
+### 数据管理
+* vuex
+### 脚本预处理器
 * postcss
+### 自动测试
 * mocha
 
-# 文件系统架构
+# 工程文件系统架构
 ```
 
 - src\
