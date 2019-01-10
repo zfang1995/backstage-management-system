@@ -6,12 +6,16 @@
       @submit="handleSubmit"
       class="login-form"
     >
+      <h1 class="form-title">{{ $t('login.title') }}</h1>
       <a-form-item>
         <a-input
-          placeholder="Username"
+          :placeholder="$t('login.username')"
           v-decorator="[
           'userName',
-          { rules: [{ required: true, message: 'Please input your username!' }] }
+          { rules: [
+              { required: true, message: 'Please input your username!' },
+              { pattern: /^[0-9A-Za-z]{6,12}$/, message: `${$t('login.usernameValidate')}` }
+            ] }
         ]"
         >
           <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
@@ -21,10 +25,13 @@
         <a-input
           v-decorator="[
           'password',
-          { rules: [{ required: true, message: 'Please input your Password!' }] }
+          { rules: [
+              { required: true, message: 'Please input your Password!'},
+              { pattern: /(?!^[0-9]{6,12}$)(?!^[a-z]{6,12}$)(?!^[A-Z]{6,12}$)^[0-9A-Za-z]{6,12}$/, message: `${$t('login.passwordValidate')}`}
+            ] }
         ]"
           type="password"
-          placeholder="Password"
+          :placeholder="$t('login.password')"
         >
           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)"/>
         </a-input>
@@ -38,10 +45,10 @@
             initialValue: true,
           }
         ]"
-        >Remember me</a-checkbox>
-        <a class="login-form-forgot" href>Forgot password</a>
-        <a-button type="primary" htmlType="submit" class="login-form-button">Log in</a-button>Or
-        <a href>register now!</a>
+        >{{$t('login["remenber me"]')}}</a-checkbox>
+        <a class="login-form-forgot" href>{{$t("login['forgot password']")}}</a>
+        <a-button type="primary" htmlType="submit" class="login-form-button">{{$t('login.logIn')}}</a-button>Or
+        <a href>{{$t('login["register now!"]')}}</a>
       </a-form-item>
     </a-form>
   </div>
@@ -76,9 +83,10 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .page-wrap {
   height: 100%;
+  background-color: #2d3a4b;
 }
 .login-form {
   position: absolute;
@@ -91,5 +99,8 @@ export default {
   max-width: 96%;
   min-width: 3cm;
   height: fit-content;
+}
+.form-title {
+  text-align: center;
 }
 </style>

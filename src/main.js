@@ -8,12 +8,11 @@ import axios from 'axios'
 import 'babel-polyfill'
 import localforage from 'localforage'
 import vueComponentPopup from './utils/vue-component-popup'
-import {i18n_store, messages} from './store/modules/i18n'
-import VueI18n from 'vue-i18n'
+import {i18n} from './store/modules/i18n'
 
 Vue.use(Antd)
 Vue.use(vueComponentPopup)
-Vue.use(VueI18n)
+
 
 Vue.prototype.$axios = axios
 Vue.prototype.$localforage = localforage
@@ -22,9 +21,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  i18n: new VueI18n({
-    locale: i18n_store.state.userPreferedLanguage,
-    messages
-  }),
+  i18n,
   render: h => h(App)
 }).$mount('#app')

@@ -79,7 +79,12 @@ export default {
     password: 'Password',
     any: 'any',
     thirdparty: 'Or connect with',
-    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !'
+    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !',
+    'remenber me': 'remenber me',
+    'register now!': 'register now!',
+    'forgot password': 'Forgot password',
+    passwordValidate: 'Password must be between 6-12 digits, consist of numbers, lowercase characters, or uppercase characters, and must include at least 2 kinds of these.',
+    usernameValidate: 'Username must be between 6-12 digits, consist of numbers, lowercase characters, or uppercase characters.'
   },
   documentation: {
     documentation: 'Documentation',

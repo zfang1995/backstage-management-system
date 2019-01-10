@@ -79,7 +79,12 @@ export default {
     password: '密码',
     any: '随便填',
     thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！',
+    'remenber me': '记住我',
+    'register now!': '即刻注册！',
+    'forgot password': '忘了密码',
+    passwordValidate: '密码长度必须在6-12位间，由数字、小写字符或大写字母组成，且须至少包括2种字符。',
+    usernameValidate: '密码长度必须在6-12位间，由数字、小写字符或大写字母组成。'
   },
   documentation: {
     documentation: '文档',
