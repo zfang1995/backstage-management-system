@@ -6,7 +6,10 @@
       @submit="handleSubmit"
       class="login-form"
     >
-      <h1 class="form-title">{{ $t('login.title') }}</h1>
+      <div class="flexbox">
+        <h1 class="form-title">{{ $t('login.title') }}</h1>
+        <icon-font type="icon-fanyi-full"/>
+      </div>
       <a-form-item>
         <a-input
           :placeholder="$t('login.username')"
@@ -55,7 +58,10 @@
 </template>
 
 <script>
+import {iconFont} from '@/assets/icons/'
+
 export default {
+  components: {iconFont},
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
@@ -100,7 +106,12 @@ export default {
   min-width: 3cm;
   height: fit-content;
 }
+.flexbox {
+  display: flex;
+  align-items: center;
+}
 .form-title {
   text-align: center;
+  flex-grow: 1;
 }
 </style>

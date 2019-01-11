@@ -1,10 +1,10 @@
 module.exports = (ctx) => ({
-  parser: ctx.parser ? 'sugarss' : false,
+  parser: ctx.parser ? 'postcss-scss' : false,
   map: ctx.env === 'development' ? ctx.map : false,
   plugins: {
     "postcss-easy-import": {
       "extensions": [
-        ".sss"
+        ".scss"
       ]
     },
     "autoprefixer": {}

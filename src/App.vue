@@ -7,6 +7,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
+import '@/assets/styles/index.scss'
 
   export default {
     name: 'app',
@@ -27,8 +28,13 @@ import {mapGetters} from 'vuex'
   }
 </script>
 <style>
+
 #app {
   height: 100vh;
   width: 100vw;
+}
+.anticon {
+  font-size: 24px;
+  /* color: white; */
 }
 </style>
