@@ -10,10 +10,17 @@ Vue.use(VueI18n)
 
 export let i18n_store = {
   state: {
-    userLanguage: window.navigator.language
+    userLanguage: window.navigator.language,
+    languageLookupTable: {
+      'zh-CN': '简体中文',
+      'en-US': 'english'
+    }
   },
   getters: {
     locale (state) {
+      return state.userLanguage
+    },
+    languagePackage (state) {
       return state.userLanguage === 'zh-CN' ? zh_CN : en_US
     }
   },

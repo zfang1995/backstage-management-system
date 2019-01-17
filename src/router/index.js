@@ -1,18 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import * as components from '@/components'
 
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '',
-      component: () => import("../components/homepage/homepage.vue"),
+      component: components.homepage,
       meta: { title: '自述文件' },
       redirect: '/dashboard',
       children: [
         {
           path: '/dashboard',
-          component: () => import("../components/homepage/components/dashboard/dashboard.vue"),
+          component: components.dashboard,
           meta: { title: 'dashboard' }
         }
       ] 
@@ -82,7 +83,7 @@ export default new Router({
     // },
     {
       path: '/login',
-      component: resolve => require(['../components/login_page/login_page.vue'], resolve)
+      component: components.login_page
     },
     {
       path: '*',
@@ -90,7 +91,7 @@ export default new Router({
     },
     {
       path: '/404',
-      component: import('../components/404_page/404.vue'),
+      component: components.page_404,
       meta: { title: '404' }
     } 
   ]

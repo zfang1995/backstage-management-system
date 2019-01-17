@@ -1,7 +1,6 @@
 @import './variables.scss';
 @import './mixin.scss';
 @import './transition.scss';
-@import './element-ui.scss';
 @import './sidebar.scss';
 @import './btn.scss';
 
@@ -22,9 +21,6 @@ html {
   box-sizing: border-box;
 }
 
-#app{
-  height: 100%;
-}
 
 *,
 *:before,

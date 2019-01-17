@@ -29,6 +29,7 @@ yarn run lint
 * vuex
 ### 脚本预处理器
 * postcss
+* scss
 ### 自动测试
 * mocha
 

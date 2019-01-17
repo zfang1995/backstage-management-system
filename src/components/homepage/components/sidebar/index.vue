@@ -6,15 +6,9 @@
       :defaultOpenKeys="['sub1']"
       :style="{ height: '100%', borderRight: 0 }"
     >
-      <a-sub-menu key="sub1">
-        <span slot="title">
-          <a-icon type="user"/>subnav 1
-        </span>
-        <a-menu-item key="1">option1</a-menu-item>
-        <a-menu-item key="2">option2</a-menu-item>
-        <a-menu-item key="3">option3</a-menu-item>
-        <a-menu-item key="4">option4</a-menu-item>
-      </a-sub-menu>
+      <a-menu-item key="1">
+          <a-icon type="dashboard"/>{{$t('navbar.dashboard')}}
+      </a-menu-item>
       <a-sub-menu key="sub2">
         <span slot="title">
           <a-icon type="laptop"/>subnav 2

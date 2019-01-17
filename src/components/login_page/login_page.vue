@@ -8,7 +8,17 @@
     >
       <div class="flexbox">
         <h1 class="form-title">{{ $t('login.title') }}</h1>
-        <icon-font type="icon-fanyi-full"/>
+        <a-dropdown :trigger="['click']" placement="bottomCenter">
+          <icon-font type="icon-fanyi-full" class="ant-dropdown-link"/>
+          <a-menu slot="overlay">
+            <a-menu-item
+              v-for="(value, key) in $store.state.i18n.languageLookupTable"
+              :key="key"
+              :disabled="locale === key ? true : false"
+              @click="$store.commit('CHANGE_LOCALE', key)"
+            >{{ value }}</a-menu-item>
+          </a-menu>
+        </a-dropdown>
       </div>
       <a-form-item>
         <a-input
@@ -16,7 +26,7 @@
           v-decorator="[
           'userName',
           { rules: [
-              { required: true, message: 'Please input your username!' },
+              { required: true, message: $t('login.usernameRequired')},
               { pattern: /^[0-9A-Za-z]{6,12}$/, message: `${$t('login.usernameValidate')}` }
             ] }
         ]"
@@ -29,7 +39,7 @@
           v-decorator="[
           'password',
           { rules: [
-              { required: true, message: 'Please input your Password!'},
+              { required: true, message: $t('login.passwordRequired')},
               { pattern: /(?!^[0-9]{6,12}$)(?!^[a-z]{6,12}$)(?!^[A-Z]{6,12}$)^[0-9A-Za-z]{6,12}$/, message: `${$t('login.passwordValidate')}`}
             ] }
         ]"
@@ -58,10 +68,11 @@
 </template>
 
 <script>
-import {iconFont} from '@/assets/icons/'
+import { iconFont } from "@/assets/icons/";
+import { mapGetters } from "vuex";
 
 export default {
-  components: {iconFont},
+  components: { iconFont },
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
@@ -71,10 +82,15 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           window.console.log("Received values of form: ", values);
+          this.$router.push("/");
         }
       });
     }
-  }
+  },
+  computed: {
+    ...mapGetters(["locale"])
+  },
+  mounted() {}
 };
 </script>
 <style>
@@ -89,10 +105,10 @@ export default {
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 .page-wrap {
   height: 100%;
-  background-color: #2d3a4b;
+  background-color: #324157;
 }
 .login-form {
   position: absolute;

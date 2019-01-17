@@ -1,1 +1,0 @@
-export let componentsPathMap =  {"404":"@/components/404_page/404.vue","dashboard":"@/components/homepage/components/dashboard/dashboard.vue","sidebar":"@/components/homepage/components/sidebar/sidebar.vue","homepage":"@/components/homepage/homepage.vue","login_page":"@/components/login_page/login_page.vue"}

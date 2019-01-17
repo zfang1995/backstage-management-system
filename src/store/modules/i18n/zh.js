@@ -84,7 +84,9 @@ export default {
     'register now!': '即刻注册！',
     'forgot password': '忘了密码',
     passwordValidate: '密码长度必须在6-12位间，由数字、小写字符或大写字母组成，且须至少包括2种字符。',
-    usernameValidate: '密码长度必须在6-12位间，由数字、小写字符或大写字母组成。'
+    usernameValidate: '密码长度必须在6-12位间，由数字、小写字符或大写字母组成。',
+    usernameRequired: '请输入用户名',
+    passwordRequired: '请输入密码'
   },
   documentation: {
     documentation: '文档',

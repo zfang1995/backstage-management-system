@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <a-locale-provider :locale="locale">
+    <a-locale-provider :locale="languagePackage">
       <router-view></router-view>
    </a-locale-provider> 
   </div>
 </template>
 <script>
 import {mapGetters} from 'vuex'
-import '@/assets/styles/index.scss'
 
   export default {
     name: 'app',
@@ -23,7 +22,7 @@ import '@/assets/styles/index.scss'
       }
     },
     computed: {
-      ...mapGetters(['locale'])
+      ...mapGetters(['languagePackage'])
     }
   }
 </script>

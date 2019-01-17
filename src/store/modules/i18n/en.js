@@ -84,7 +84,9 @@ export default {
     'register now!': 'register now!',
     'forgot password': 'Forgot password',
     passwordValidate: 'Password must be between 6-12 digits, consist of numbers, lowercase characters, or uppercase characters, and must include at least 2 kinds of these.',
-    usernameValidate: 'Username must be between 6-12 digits, consist of numbers, lowercase characters, or uppercase characters.'
+    usernameValidate: 'Username must be between 6-12 digits, consist of numbers, lowercase characters, or uppercase characters.',
+    usernameRequired: 'please input your username',
+    passwordRequired: 'please input your password'
   },
   documentation: {
     documentation: 'Documentation',
