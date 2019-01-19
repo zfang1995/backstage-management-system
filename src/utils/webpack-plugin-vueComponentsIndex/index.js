@@ -13,7 +13,6 @@ let componentsIndex = ''
  */
 let traversal = function (directory, callback, finish) {
       fs.readdir(directory, function (err, files) {
-          global.console.log(files);
           (function next(i) {
               if (i < files.length) {
                   var pathname = path.join(directory, files[i]);
@@ -35,7 +34,7 @@ let traversal = function (directory, callback, finish) {
           }(0));
       });
   };
-let buildComponentsPath = function (rootPath) {
+let buildComponentsIndex = function (rootPath) {
   traversal(rootPath, (pathname, next) => {
       if (path.extname(pathname) === '.vue') {
           // modify componentsPathMap
@@ -54,17 +53,17 @@ let buildComponentsPath = function (rootPath) {
       )
   })
 }
-  
-class vueComponentsIndex {
-  constructor(options = {rootPath: './src/components'}) {
-    this.options = options;
-  }
-  apply(compiler) {
-    compiler.hooks.afterEnvironment.tap('vueComponentsIndex', () => {
-      buildComponentsPath(this.options.rootPath)
-    });
-  }
-}
 
 // -> progress
-module.exports = vueComponentsIndex;
+module.exports = class vueComponentsIndex {
+    constructor(options = {rootPath: './src/components'}) {
+      this.options = options;
+    }
+    apply(compiler) {
+      compiler.hooks.watchRun.tapAsync('vueComponentsIndex', (compiler, callback) => {
+        buildComponentsIndex(this.options.rootPath)
+        compiler
+        callback()
+      });
+    }
+  }
