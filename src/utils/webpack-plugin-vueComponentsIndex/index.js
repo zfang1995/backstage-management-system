@@ -1,69 +1,57 @@
-// -> prepare dependency
+// -> declare presets
 let fs = require('fs')
 let path = require('path')
-let componentsPathMap = {};
-let componentsIndex = ''
-
-/**
- * 遍历 directory 中的所有文件，并为每个文件执行一次 callback 函数。
- *
- * @param {string} directory
- * @param {function} callback the callback function will be excute that if a sub-file or sub-directory has been found in directory.
- * @param {function} finish the finish function will be excute at the final progress of traversal.
- */
-let traversal = function (directory, callback, finish) {
-      fs.readdir(directory, function (err, files) {
-          (function next(i) {
-              if (i < files.length) {
-                  var pathname = path.join(directory, files[i]);
-  
-                  fs.stat(pathname, function (err, stats) {
-                      if (stats.isDirectory()) {
-                          traversal(pathname, callback, function () {
-                              next(i + 1);
-                          });
-                      } else {
-                          callback(pathname, function () {
-                              next(i + 1);
-                          });
-                      }
-                  });
-              } else {
-                  finish && finish();
-              }
-          }(0));
-      });
-  };
-let buildComponentsIndex = function (rootPath) {
-  traversal(rootPath, (pathname, next) => {
-      if (path.extname(pathname) === '.vue') {
-          // modify componentsPathMap
-          let basename = path.basename(path.dirname(pathname)),
-              _path = pathname.replace(/\\/g, '/').replace(/src/, '@')
-          componentsPathMap[basename] = _path
-          // modify componentsIndex
-          componentsIndex = componentsIndex.concat(`export let ${basename} = () => import('${_path}') \n`)
-      }
-      next()
-  }, () => {
-      fs.writeFile(
-        `${rootPath.replace(/\\/g, '/')}/index.js`, 
-          componentsIndex, 
-          err => {if (err) throw err}
-      )
-  })
+let componentsPathsTable = {};
+let rootPath = './src/components'
+let _debounce = require('lodash.debounce')
+let generateComponentsIndex = _debounce(function () {
+    let componentsIndex = ''
+    for (const basename in componentsPathsTable) {
+        if (componentsPathsTable.hasOwnProperty(basename)) {
+            const _path = componentsPathsTable[basename];
+            componentsIndex = componentsIndex.concat(`export let ${basename} = () => import('${_path}') \n`)
+        }
+    }
+    fs.writeFile(
+        `${rootPath.replace(/\\/g, '/')}/index.js`,
+        componentsIndex,
+        err => { if (err) throw err }
+    )
+}, 5000, { leading: true, trailing: true })
+let pathsTableBuilder = (resourcePath, event, callback) => {
+    if (path.extname(resourcePath) === '.vue') {
+        // modify componentsPathsTable
+        let handlerLookupTable = {
+           add () {
+                let basename = path.basename(resourcePath) === 'index' ? path.basename(path.dirname(resourcePath)) : path.basename(resourcePath),
+                    _path = resourcePath.replace(/\\/g, '/').replace(/^.*src/, '@')
+                componentsPathsTable[basename] = _path
+           },
+           unlink () {
+                delete componentsPathsTable[path.basename(path.dirname(resourcePath))]
+           }
+        }
+        handlerLookupTable[event]()
+        callback()
+    }
 }
+let chokidar = require('chokidar')
 
-// -> progress
+
+// -> main progress
 module.exports = class vueComponentsIndex {
     constructor(options = {rootPath: './src/components'}) {
       this.options = options;
     }
     apply(compiler) {
-      compiler.hooks.watchRun.tapAsync('vueComponentsIndex', (compiler, callback) => {
-        buildComponentsIndex(this.options.rootPath)
-        compiler
-        callback()
+      compiler.hooks.afterEnvironment.tap('vueComponentsIndex', () => {
+        chokidar.watch(rootPath)
+            .on('add', resourcePath => {
+                pathsTableBuilder(resourcePath, 'add', generateComponentsIndex)
+            })
+            .on('unlink', resourcePath => {
+                pathsTableBuilder(resourcePath, 'unlink', generateComponentsIndex)
+            })
       });
     }
   }

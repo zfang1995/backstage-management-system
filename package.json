@@ -7,7 +7,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "generateComponentsIndex": "node ./src/utils/generateComponentsIndex.js"
+    "generateComponentsIndex": "node ./src/utils/generateComponentsIndex.js",
+    "inspect": "vue-cli-service inspect",
+    "help": "vue-cli-service help",
+    "cli-service": "vue-cli-service"
   },
   "dependencies": {
     "ant-design-vue": "^1.2.4",
@@ -35,6 +38,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.1.2",
+    "chokidar": "^2.0.4",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
@@ -51,7 +55,8 @@
     "sugarss": "^2.0.0",
     "vue-cli-plugin-pug": "^1.0.7",
     "vue-svg-loader": "^0.11.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "webpack-cli": "^3.2.1"
   },
   "eslintConfig": {
     "root": true,

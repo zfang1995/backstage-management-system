@@ -1,0 +1,113 @@
+
+{ normalModuleFactory:
+   NormalModuleFactory {
+     _pluginCompat:
+      SyncBailHook {
+        _args: [Array],
+        taps: [Array],
+        interceptors: [],
+        call: [Function: lazyCompileHook],
+        promise: [Function: lazyCompileHook],
+        callAsync: [Function: lazyCompileHook],
+        _x: undefined },
+     hooks:
+      { resolver: [Object],
+        factory: [Object],
+        beforeResolve: [Object],
+        afterResolve: [Object],
+        createModule: [Object],
+        module: [Object],
+        createParser: [Object],
+        parser: [Object],
+        createGenerator: [Object],
+        generator: [Object] },
+     resolverFactory:
+      ResolverFactory {
+        _pluginCompat: [Object],
+        hooks: [Object],
+        cache1: WeakMap {},
+        cache2: Map {} },
+     ruleSet: RuleSet { references: [Object], rules: [Array] },
+     cachePredicate: [Function: bound Boolean],
+     context: 'C:\\Users\\zf\\OneDrive\\project\\my-management-system',
+     parserCache: {},
+     generatorCache: {} },
+  contextModuleFactory:
+   ContextModuleFactory {
+     _pluginCompat:
+      SyncBailHook {
+        _args: [Array],
+        taps: [Array],
+        interceptors: [],
+        call: [Function: lazyCompileHook],
+        promise: [Function: lazyCompileHook],
+        callAsync: [Function: lazyCompileHook],
+        _x: undefined },
+     hooks:
+      { beforeResolve: [Object],
+        afterResolve: [Object],
+        contextModuleFiles: [Object],
+        alternatives: [Object] },
+     resolverFactory:
+      ResolverFactory {
+        _pluginCompat: [Object],
+        hooks: [Object],
+        cache1: WeakMap {},
+        cache2: Map {} } },
+  compilationDependencies: Set {} }
+  0% compiling{ normalModuleFactory:
+   NormalModuleFactory {
+     _pluginCompat:
+      SyncBailHook {
+        _args: [Array],
+        taps: [Array],
+        interceptors: [],
+        call: [Function: lazyCompileHook],
+        promise: [Function: lazyCompileHook],
+        callAsync: [Function: lazyCompileHook],
+        _x: undefined },
+     hooks:
+      { resolver: [Object],
+        factory: [Object],
+        beforeResolve: [Object],
+        afterResolve: [Object],
+        createModule: [Object],
+        module: [Object],
+        createParser: [Object],
+        parser: [Object],
+        createGenerator: [Object],
+        generator: [Object] },
+     resolverFactory:
+      ResolverFactory {
+        _pluginCompat: [Object],
+        hooks: [Object],
+        cache1: WeakMap {},
+        cache2: Map {} },
+     ruleSet: RuleSet { references: [Object], rules: [Array] },
+     cachePredicate: [Function: bound Boolean],
+     context: 'C:\\Users\\zf\\OneDrive\\project\\my-management-system',
+     parserCache: {},
+     generatorCache: {} },
+  contextModuleFactory:
+   ContextModuleFactory {
+     _pluginCompat:
+      SyncBailHook {
+        _args: [Array],
+        taps: [Array],
+        interceptors: [],
+        call: [Function: lazyCompileHook],
+        promise: [Function: lazyCompileHook],
+        callAsync: [Function: lazyCompileHook],
+        _x: undefined },
+     hooks:
+      { beforeResolve: [Object],
+        afterResolve: [Object],
+        contextModuleFiles: [Object],
+        alternatives: [Object] },
+     resolverFactory:
+      ResolverFactory {
+        _pluginCompat: [Object],
+        hooks: [Object],
+        cache1: WeakMap {},
+        cache2: Map {} } },
+  compilationDependencies: Set {} }       

@@ -20,6 +20,7 @@ import sidebar from './components/sidebar'
 import topbar from './components/topbar'
 import mainBody from './components/main_body'
 
+
 export default {
   components: {sidebar, topbar, mainBody},
   data () {

@@ -1,3 +1,4 @@
+const path = require('path')
 const VueComponentsIndex = require('./src/utils/webpack-plugin-vueComponentsIndex')
 
 module.exports = {
@@ -9,8 +10,7 @@ module.exports = {
       .use('vue-svg-loader')
       .loader('vue-svg-loader');
     // configure style-resource-loader
-    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'],
-          path = require('path')
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     function addStyleResource (rule) {
       rule.use('style-resource')
         .loader('style-resources-loader')
@@ -21,13 +21,15 @@ module.exports = {
         })
     }
     types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
-    // configure vue-components-list
-    // const vueComponentsList = require('./src/utils/webpack-plugin-vueComponentsList')
-    // config
-    //   .plugin('vueComponentsList')
-    //   .use(vueComponentsList, {rootPath: './src/components'})
+    // configure vue-components-index
+    // config.module
+    //   .rule('vue')
+    //     .test(/\.vue$/)
+    //     .use('componentsIndex')
+    //       .loader(path.resolve('./src/utils/webpack-loader-vueComponentsIndex'))
   },
   configureWebpack: {
-    plugins: [new VueComponentsIndex()]
+    plugins: [new VueComponentsIndex()],
+    devtool: 'source-map'
   }
 };
