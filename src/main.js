@@ -9,6 +9,7 @@ import 'babel-polyfill'
 import localforage from 'localforage'
 import vueComponentPopup from './utils/vue-component-popup'
 import {i18n} from './store/modules/i18n'
+import '@/assets/styles/index.scss'
 
 Vue.use(Antd)
 Vue.use(vueComponentPopup)

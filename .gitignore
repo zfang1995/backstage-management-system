@@ -3,6 +3,7 @@ node_modules
 /dist
 playground
 /utils/*/.git
+/utils/vue-cli-plugin*
 
 # local env files
 .env.local

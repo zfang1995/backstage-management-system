@@ -6,35 +6,89 @@
       :defaultOpenKeys="['sub1']"
       :style="{ height: '100%', borderRight: 0 }"
     >
-      <a-menu-item key="1">
-          <a-icon type="dashboard"/>{{$t('navbar.dashboard')}}
-      </a-menu-item>
-      <a-sub-menu key="sub2">
-        <span slot="title">
-          <a-icon type="laptop"/>subnav 2
-        </span>
-        <a-menu-item key="5">option5</a-menu-item>
-        <a-menu-item key="6">option6</a-menu-item>
-        <a-menu-item key="7">option7</a-menu-item>
-        <a-menu-item key="8">option8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub3">
-        <span slot="title">
-          <a-icon type="notification"/>subnav 3
-        </span>
-        <a-menu-item key="9">option9</a-menu-item>
-        <a-menu-item key="10">option10</a-menu-item>
-        <a-menu-item key="11">option11</a-menu-item>
-        <a-menu-item key="12">option12</a-menu-item>
-      </a-sub-menu>
+      <template v-for="route in homepageRoutes.children">
+        <a-menu-item v-if="!route.children" :key="route.path" :to="route.path">
+          <app-link :to="route.path" :_slot="'title'" v-if="route.meta">
+            <a-icon :type="route.meta.icon"/>
+            <span>{{ generateTitle(route.meta.title) }}</span>
+          </app-link>
+        </a-menu-item><sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="generateTitle"></sub-menu>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+// import {sidebarItem} from '@/components'
+// import { item } from "@/components";
+import { appLink } from "@/components/";
+import { subMenu } from "@/components/";
+import path from "path";
+import { generateTitle } from "@/utils/i18n";
+import { isExternal } from "@/utils";
+// import FixiOSBug from './mixins/fixiOSBug'
+
 export default {
+  components: {
+    // sidebarItem: sidebarItem
+    appLink,
+    subMenu
+    // item
+  },
   data() {
-    return {};
+    return {
+      onlyOneChild: null
+    };
+  },
+  computed: {
+    ...mapGetters(["permitted_routes", "sidebar"]),
+    isCollapse() {
+      return !this.sidebar.opened;
+    },
+    homepageRoutes () {
+      return this.$store.getters.permitted_routes.find(route => {
+        if (route.meta) return route.meta.title==='homepage'
+      })
+    }
+  },
+  methods: {
+    hasOneShowingChild(children, parent) {
+      if (children) {
+        const showingChildren = children.filter(item => {
+          if (item.hidden) {
+            return false;
+          } else {
+            // Temp set(will be used if only has one showing child)
+            this.onlyOneChild = item;
+            return true;
+          }
+        });
+
+        // When there is only one child router, the child router is displayed by default
+        if (showingChildren.length === 1) {
+          return true;
+        }
+
+        // Show parent if there are no child router to display
+        if (showingChildren.length === 0) {
+          this.onlyOneChild = { ...parent, path: "", noShowingChildren: true };
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
+    resolvePath(routePath) {
+      if (this.isExternalLink(routePath)) {
+        return routePath;
+      }
+      return path.resolve(this.basePath, routePath);
+    },
+    isExternalLink(routePath) {
+      return isExternal(routePath);
+    },
+    generateTitle
   }
 };
 </script>

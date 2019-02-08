@@ -1,5 +1,5 @@
 const path = require('path')
-const VueComponentsIndex = require('./src/utils/webpack-plugin-vueComponentsIndex')
+const VueComponentsIndex = require('./src/utils/vue-cli-plugin-componentsIndex/webpack-plugin-vueComponentsIndex')
 
 module.exports = {
   chainWebpack: (config) => {

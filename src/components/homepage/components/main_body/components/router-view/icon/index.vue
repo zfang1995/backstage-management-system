@@ -1,11 +1,13 @@
 <template>
-    
+  <div>
+
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "dnd-list"
-    }
+  export default {
+    
+  }
 </script>
 
 <style scoped>
