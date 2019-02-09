@@ -68,11 +68,9 @@
 </template>
 
 <script>
-import { iconFont } from "@/assets/icons/";
 import { mapGetters } from "vuex";
 
 export default {
-  components: { iconFont },
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },

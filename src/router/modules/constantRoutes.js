@@ -10,23 +10,23 @@ export default [
       {
         path: '/dashboard',
         component: components.dashboard,
-        meta: { title: 'dashboard', icon: 'dashboard' }
+        meta: { title: 'dashboard', aIcon: 'dashboard' }
       },
       {
         path: '/icon',
         component: components.icon,
-        meta: { title: '自定义图标', icon: 'icon'  }
+        meta: { title: '自定义图标', iconFont: 'icon-gongju' }
       },
       {
         path: '/table',
         component: components.table,
-        meta: { title: '基础表格' }
+        meta: { title: '基础表格', aIcon: 'table' }
       },
       {
         // vue-schart组件
         path: '/charts',
         component: components.charts,
-        meta: { title: 'schart图表' }
+        meta: { title: 'schart图表', aIcon: 'pie-chart' }
       }
     ]   
   },
@@ -81,7 +81,7 @@ export default [
   // },
   {
     path: '/login',
-    component: components.login_page,
+    component: components.loginPage,
     meta: { title: 'login' }
   },
   {
@@ -90,7 +90,7 @@ export default [
   },
   {
     path: '/404',
-    component: components.page_404,
+    component: components.page404,
     meta: { title: '404' }
   } 
 ]

@@ -9,9 +9,11 @@ import 'babel-polyfill'
 import localforage from 'localforage'
 import vueComponentPopup from './utils/vue-component-popup'
 import {i18n} from './store/modules/i18n'
-import '@/assets/styles/index.scss'
+// import '@/assets/styles/index.scss'
+import { iconFont } from "@/assets/icons/"
 
 Vue.use(Antd)
+Vue.component('iconFont', iconFont)
 Vue.use(vueComponentPopup)
 
 

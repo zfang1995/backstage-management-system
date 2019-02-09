@@ -1,18 +1,29 @@
 <template>
-  <a-layout-sider width="200" style="background: #fff">
+  <a-layout-sider
+    width="200"
+    collapsible
+    v-model="collapsed"
+    breakpoint="lg"
+    :collapsedWidth="collapsedWidth"
+    @collapse="onCollapse"
+    @breakpoint="onBreakpoint"
+  >
     <a-menu
       mode="inline"
       :defaultSelectedKeys="['1']"
       :defaultOpenKeys="['sub1']"
       :style="{ height: '100%', borderRight: 0 }"
+      theme="dark"
     >
       <template v-for="route in homepageRoutes.children">
         <a-menu-item v-if="!route.children" :key="route.path" :to="route.path">
           <app-link :to="route.path" :_slot="'title'" v-if="route.meta">
-            <a-icon :type="route.meta.icon"/>
+            <a-icon v-if="route.meta.aIcon" :type="route.meta.aIcon"/>
+            <icon-font v-else :type="route.meta.iconFont"></icon-font>
             <span>{{ generateTitle(route.meta.title) }}</span>
           </app-link>
-        </a-menu-item><sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="generateTitle"></sub-menu>
+        </a-menu-item>
+        <sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="generateTitle"></sub-menu>
       </template>
     </a-menu>
   </a-layout-sider>
@@ -20,8 +31,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import {sidebarItem} from '@/components'
-// import { item } from "@/components";
 import { appLink } from "@/components/";
 import { subMenu } from "@/components/";
 import path from "path";
@@ -31,14 +40,14 @@ import { isExternal } from "@/utils";
 
 export default {
   components: {
-    // sidebarItem: sidebarItem
     appLink,
     subMenu
-    // item
   },
   data() {
     return {
-      onlyOneChild: null
+      onlyOneChild: null,
+      collapsed: false,
+      collapsedWidth: 80
     };
   },
   computed: {
@@ -46,13 +55,20 @@ export default {
     isCollapse() {
       return !this.sidebar.opened;
     },
-    homepageRoutes () {
+    homepageRoutes() {
       return this.$store.getters.permitted_routes.find(route => {
-        if (route.meta) return route.meta.title==='homepage'
-      })
+        if (route.meta) return route.meta.title === "homepage";
+      });
     }
   },
   methods: {
+    onCollapse() {
+
+    },
+    onBreakpoint(isBroken) {
+      if (isBroken) {this.collapsedWidth = 0}
+      else {this.collapsedWidth = 80}
+    },
     hasOneShowingChild(children, parent) {
       if (children) {
         const showingChildren = children.filter(item => {

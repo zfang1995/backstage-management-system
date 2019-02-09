@@ -1,32 +1,26 @@
 <template>
-  <div id="app">
-    <a-locale-provider :locale="languagePackage">
+  <a-locale-provider :locale="languagePackage">
+    <div id="app">
       <router-view></router-view>
-   </a-locale-provider> 
-  </div>
+    </div>
+  </a-locale-provider>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
-  export default {
-    name: 'app',
-    components: {
-    },
-    mounted() {
-
-    },
-    data() {
-      return {
-
-      }
-    },
-    computed: {
-      ...mapGetters(['languagePackage'])
-    }
+export default {
+  name: "app",
+  components: {},
+  mounted() {},
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["languagePackage"])
   }
+};
 </script>
 <style>
-
 #app {
   height: 100vh;
   width: 100vw;
