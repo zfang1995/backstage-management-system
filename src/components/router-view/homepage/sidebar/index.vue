@@ -10,7 +10,7 @@
   >
     <a-menu
       mode="inline"
-      :defaultSelectedKeys="['1']"
+      :defaultSelectedKeys="[homepageRoutes.redirect]"
       :defaultOpenKeys="['sub1']"
       :style="{ height: '100%', borderRight: 0 }"
       theme="dark"

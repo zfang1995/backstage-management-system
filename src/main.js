@@ -11,9 +11,12 @@ import vueComponentPopup from './utils/vue-component-popup'
 import {i18n} from './store/modules/i18n'
 // import '@/assets/styles/index.scss'
 import { iconFont } from "@/assets/icons/"
+import appLink from "@/assets/appLink"
 
 Vue.use(Antd)
 Vue.component('iconFont', iconFont)
+Vue.component('appLink', appLink)
+
 Vue.use(vueComponentPopup)
 
 

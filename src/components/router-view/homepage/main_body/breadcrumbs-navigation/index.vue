@@ -14,7 +14,6 @@ import { generateTitle } from "@/utils/i18n";
 export default {
   computed: {
     routes () {
-      window.console.log(this.$route)
       return this.$route.matched.filter((element, index) => index !== 0)
     }
   },
