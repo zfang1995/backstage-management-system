@@ -15,18 +15,18 @@ export default [
       {
         path: '/icon',
         component: components.icon,
-        meta: { title: '自定义图标', iconFont: 'icon-gongju' }
+        meta: { title: 'icons', iconFont: 'icon-gongju' }
       },
       {
         path: '/table',
         component: components.table,
-        meta: { title: '基础表格', aIcon: 'table' }
+        meta: { title: 'Table', aIcon: 'table' }
       },
       {
         // vue-schart组件
         path: '/charts',
         component: components.charts,
-        meta: { title: 'schart图表', aIcon: 'pie-chart' }
+        meta: { title: 'charts', aIcon: 'pie-chart' }
       }
     ]   
   },

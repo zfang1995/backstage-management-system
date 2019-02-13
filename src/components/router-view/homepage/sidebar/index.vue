@@ -20,10 +20,10 @@
           <app-link :to="route.path" :_slot="'title'" v-if="route.meta">
             <a-icon v-if="route.meta.aIcon" :type="route.meta.aIcon"/>
             <icon-font v-else :type="route.meta.iconFont"></icon-font>
-            <span>{{ generateTitle(route.meta.title) }}</span>
+            <span>{{ internationalize(route.meta.title) }}</span>
           </app-link>
         </a-menu-item>
-        <sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="generateTitle"></sub-menu>
+        <sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="internationalize"></sub-menu>
       </template>
     </a-menu>
   </a-layout-sider>
@@ -31,16 +31,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { appLink } from "@/components/";
 import { subMenu } from "@/components/";
 import path from "path";
-import { generateTitle } from "@/utils/i18n";
 import { isExternal } from "@/utils";
 // import FixiOSBug from './mixins/fixiOSBug'
 
 export default {
   components: {
-    appLink,
     subMenu
   },
   data() {
@@ -51,7 +48,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["permitted_routes", "sidebar"]),
+    ...mapGetters(["permitted_routes", "sidebar", 'internationalize']),
     isCollapse() {
       return !this.sidebar.opened;
     },
@@ -103,8 +100,7 @@ export default {
     },
     isExternalLink(routePath) {
       return isExternal(routePath);
-    },
-    generateTitle
+    }
   }
 };
 </script>

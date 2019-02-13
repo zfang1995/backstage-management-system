@@ -2,7 +2,7 @@ yarn run v1.7.0
 $ vue-cli-service inspect
 {
   mode: 'development',
-  context: 'C:\\Users\\zf\\OneDrive\\project\\my-management-system',
+  languageContext: 'C:\\Users\\zf\\OneDrive\\project\\my-management-system',
   devtool: 'source-map',
   node: {
     setImmediate: false,

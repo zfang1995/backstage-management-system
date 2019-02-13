@@ -14,7 +14,8 @@ export let i18n_store = {
     languageLookupTable: {
       'zh-CN': '简体中文',
       'en-US': 'english'
-    }
+    },
+    languageContext: ''
   },
   getters: {
     locale (state) {
@@ -22,12 +23,28 @@ export let i18n_store = {
     },
     languagePackage (state) {
       return state.userLanguage === 'zh-CN' ? zh_CN : en_US
+    },
+    internationalize(state) {
+      return function (title) {
+        const hasKey = this.$te(state.languageContext + title)
+    
+        if (hasKey) {
+          // $t :this method from vue-i18n, inject in @/lang/index.js
+          const translatedText = this.$t(state.languageContext + title)
+      
+          return translatedText
+        }
+        return title
+      }
     }
   },
   mutations: {
     CHANGE_LOCALE (state, payload) {
       state.userLanguage = payload
       i18n.locale = payload
+    },
+    changeLanguageContext (state, payload) {
+      state.languageContext = payload
     }
   },
   actions: {

@@ -12,21 +12,23 @@ import {i18n} from './store/modules/i18n'
 // import '@/assets/styles/index.scss'
 import { iconFont } from "@/assets/icons/"
 import appLink from "@/assets/appLink"
+import longPress from 'vue-longpress'
 
-Vue.use(Antd)
-Vue.component('iconFont', iconFont)
-Vue.component('appLink', appLink)
+Vue.use(Antd);
+Vue.component('iconFont', iconFont);
+Vue.component('appLink', appLink);
+Vue.component('longPress', longPress);
 
-Vue.use(vueComponentPopup)
+Vue.use(vueComponentPopup);
 
 
-Vue.prototype.$axios = axios
-Vue.prototype.$localforage = localforage
-Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
+Vue.prototype.$localforage = localforage;
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
   i18n,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

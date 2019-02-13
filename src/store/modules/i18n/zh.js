@@ -1,6 +1,6 @@
 export default {
-  route: {
-    dashboard: '首页',
+  homepage: {
+    dashboard: '仪表盘',
     introduction: '简述',
     documentation: '文档',
     guide: '引导页',
@@ -37,11 +37,11 @@ export default {
     'menu1-2-2': '菜单1-2-2',
     'menu1-3': '菜单1-3',
     menu2: '菜单2',
-    Table: 'Table',
-    dynamicTable: '动态Table',
-    dragTable: '拖拽Table',
+    Table: '表格',
+    dynamicTable: '动态表格',
+    dragTable: '可拖拽式表格',
     inlineEditTable: 'Table内编辑',
-    complexTable: '综合Table',
+    complexTable: '复杂型表格',
     treeTable: '树形表格',
     customTreeTable: '自定义树表',
     tab: 'Tab',

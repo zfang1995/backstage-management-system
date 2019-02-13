@@ -33,20 +33,18 @@ yarn run lint
 ### 自动测试
 * mocha
 
-# 工程文件系统架构
+# 工程文件目录结构设计说明书
 ```
 
 - src\
 | |
-| - assets\ //
-| - components\ // 存放 APP.VUE 的子组件和其后代组件所需的公用组件
-| | |
-| | - common\ // 存放全局的公用组件
+| - APP.vue
+| - assets\ // 存放允许被 `src\` 目录内的任何文件引用的全局资源。
+| - components\ // 存放被 APP.vue 直接引用的子组件
+| | 
 | | - child-component-a\
-| | | |
-| | | - components\ // 存放 child-component-a.vue 的子组件
-| | | - child-component-a.vue
-| | |
+| | | - index.vue
+| | 
 | | - child-component-b\
 | | - child-component-c\
 | | ...

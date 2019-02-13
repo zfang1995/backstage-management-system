@@ -1,3 +1,0 @@
-1. 实现在项目文件变化后自动重新编译 vue Components Index 的功能。
-  1. 让webpack 监听模块忽略 components/index.js 
-  2. 
