@@ -1,4 +1,4 @@
-# my-management-system
+# backstage-management-system
 临摹自 https://github.com/PanJiaChen/vue-element-admin ，使用 ant-design-vue 代替了 element-ui。
 ## Project setup
 ```
@@ -23,17 +23,17 @@ yarn run lint
 ## 技术栈
 ### 视图模型
 * vue
-* vue-router
 * vue-ant-design
 ### 数据管理
 * vuex
+* vue-router
 ### 脚本预处理器
 * postcss
 * scss
 ### 自动测试
 * mocha
 
-# 工程文件目录结构设计说明书
+# 工程文件目录结构说明
 ```
 
 - src\

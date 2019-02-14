@@ -10,9 +10,15 @@
 
 <script>
 import { sidebar, topbar, mainBody } from "@/components";
+import {mapGetters} from 'vuex'
 
 export default {
   components: { sidebar, topbar, mainBody },
+  computed: {
+    ...mapGetters({
+      topbarTabsIncludes: 'includes'
+    })
+  },
   data() {
     return {
       collapsed: false
@@ -21,11 +27,15 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.$store.commit('changeLanguageContext', 'homepage.')
-      vm.$store.commit('addATab', to)
     })
   },
   beforeRouteUpdate(to, from, next) {
-    this.$store.commit('addATab', to)
+    if (this.topbarTabsIncludes(to)) {
+      this.$store.commit('selectATab', to)
+    }
+    else {
+      this.$store.dispatch('openNewTab', to)
+    }
     next()
   }
 };
