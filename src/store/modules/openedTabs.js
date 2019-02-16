@@ -4,7 +4,7 @@ export default {
     openedTabs: [],
     pathsOfOpenedTabs: [],
     selectedTab: null,
-    previouslySelectedTab: null
+    previousSelection: [] // type: string array
   },
   mutations: {
     addATab: ({openedTabs, pathsOfOpenedTabs}, tabRoute) => {
@@ -12,13 +12,16 @@ export default {
       openedTabs.push(tabRoute)
       pathsOfOpenedTabs.push(tabRoute.fullPath)
     },
-    removeATab: ({openedTabs, pathsOfOpenedTabs}, tabRoute) => {
-      let index = pathsOfOpenedTabs.findIndex(element => element === tabRoute.fullPath)
-      pathsOfOpenedTabs.splice(index, 1)
-      openedTabs[index].meta.showing = false
-      openedTabs.splice(index, 1)
+    removeATab: (state, tabRoute) => {
+      let index = state.pathsOfOpenedTabs.findIndex(element => element === tabRoute.fullPath)
+      state.openedTabs[index].meta.showing = false
+      state.pathsOfOpenedTabs.splice(index, 1)
+      state.openedTabs.splice(index, 1)
     },
     selectATab: (state, tabRoute) => {
+      // let index = state.pathsOfOpenedTabs.findIndex(element => element === tabRoute.fullPath)
+      // state.openedTabs.push(...(state.openedTabs.splice(index, 1)))
+      if (state.selectedTab) state.previousSelection.push(tabRoute.fullPath)
       state.selectedTab = tabRoute
     }
   },
@@ -29,7 +32,9 @@ export default {
     },
     cancelATab ({commit, state}, {tabRoute, $router}) {
       commit('removeATab', tabRoute)
-      if (state.selectedTab === tabRoute) $router.go(-1)
+      if (state.selectedTab.fullPath === tabRoute.fullPath) $router.push(state.openedTabs[
+        state.openedTabs.length - 1
+      ])
     },
     async destroyMessageReceiver () {
       let result = await new Promise(resolve => setTimeout(() => resolve(), 1000))

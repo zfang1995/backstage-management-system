@@ -27,6 +27,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.$store.commit('changeLanguageContext', 'homepage.')
+      vm.$store.dispatch('openNewTab', to)
     })
   },
   beforeRouteUpdate(to, from, next) {
