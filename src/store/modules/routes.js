@@ -1,4 +1,4 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import { default as $router , asyncRoutes, constantRoutes } from '@/router'
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -34,9 +34,25 @@ function filterAsyncRouter(routes, roles) {
   return res
 }
 
+function resolveChildren (route) {
+  if (route.children) {
+    let context = route.path
+    route.children = route.children.map(route => {
+      route.path = $router.resolve(route.path, context).route.path
+      resolveChildren(route)
+      return route
+    })
+  }
+}
+
 let permission = {
   state: {
-    routes: constantRoutes,
+    routes: constantRoutes.map(route => {
+      let context = ''
+      route.path = $router.resolve(route.path, context).route.path
+      resolveChildren(route, context)
+      return route
+    }),
     addRoutes: []
   },
   mutations: {
