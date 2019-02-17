@@ -10,20 +10,20 @@
   >
     <a-menu
       mode="inline"
-      :defaultSelectedKeys="[homepageRoutes.redirect]"
       :defaultOpenKeys="['sub1']"
       :style="{ height: '100%', borderRight: 0 }"
       theme="dark"
+      @select="preventDefaultBehavior"
     >
-      <template v-for="route in homepageRoutes.children">
-        <a-menu-item v-if="!route.children" :key="route.path" :to="route.path">
+      <template v-for="route in homepageRoutes">
+        <a-menu-item v-if="!route.children" :key="route.path" :to="route.path" :class="(selectedTab && selectedTab.fullPath === route.path) ? 'ant-menu-item-selected' : ''">
           <app-link :to="route.path" :_slot="'title'" v-if="route.meta">
             <a-icon v-if="route.meta.aIcon" :type="route.meta.aIcon"/>
             <icon-font v-else :type="route.meta.iconFont"></icon-font>
             <span>{{ internationalize(route.meta.title) }}</span>
           </app-link>
         </a-menu-item>
-        <sub-menu v-else :menuInfo="route" :key="route.path" :generateTitle="internationalize"></sub-menu>
+        <sub-menu v-else :menuInfo="route" :key="route.path" :internationalize="__internationalize()"></sub-menu>
       </template>
     </a-menu>
   </a-layout-sider>
@@ -48,17 +48,20 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["permitted_routes", "sidebar", 'internationalize']),
+    ...mapGetters(["permitted_routes", "sidebar", 'internationalize', "selectedTab"]),
     isCollapse() {
       return !this.sidebar.opened;
     },
     homepageRoutes() {
-      return this.$store.getters.permitted_routes.find(route => {
-        if (route.meta) return route.meta.title === "homepage";
-      });
+      return this.$store.getters.permitted_routes
+              .find(route => {if (route.meta) return route.meta.title === "homepage";})
+              .children
     }
   },
   methods: {
+    __internationalize () {
+      return this.internationalize.bind(this)
+    },
     onCollapse() {
 
     },
@@ -100,6 +103,12 @@ export default {
     },
     isExternalLink(routePath) {
       return isExternal(routePath);
+    },
+    preventDefaultBehavior({selectedKeys}) {
+      if (!Object.isFrozen(selectedKeys)) {
+        selectedKeys.splice(0, selectedKeys.length)
+        Object.freeze(selectedKeys)
+      }
     }
   }
 };

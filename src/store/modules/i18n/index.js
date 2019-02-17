@@ -26,12 +26,17 @@ export let i18n_store = {
     },
     internationalize(state) {
       return function (title) {
+        try {
+          this.$te('c')
+        } catch (e) {
+          window.console.log('this', this)
+        }
         const hasKey = this.$te(state.languageContext + title)
-    
+
         if (hasKey) {
           // $t :this method from vue-i18n, inject in @/lang/index.js
           const translatedText = this.$t(state.languageContext + title)
-      
+
           return translatedText
         }
         return title

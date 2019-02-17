@@ -16,7 +16,8 @@ export default {
   components: { sidebar, topbar, mainBody },
   computed: {
     ...mapGetters({
-      topbarTabsIncludes: 'includes'
+      topbarTabsIncludes: 'includes',
+      openedTabs: 'openedTabs'
     })
   },
   data() {
@@ -27,7 +28,7 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       vm.$store.commit('changeLanguageContext', 'homepage.')
-      vm.$store.dispatch('openNewTab', to)
+      if (vm.openedTabs.length === 0) vm.$store.dispatch('openNewTab', to)
     })
   },
   beforeRouteUpdate(to, from, next) {

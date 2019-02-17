@@ -6,12 +6,14 @@
       mode="horizontal"
       :style="{ lineHeight: '64px' }"
       @click="routingJump"
+      @select="preventDefaultBehavior"
+      ref="aMenu"
     >
       <a-menu-item
         v-for="(tabRoute) in openedTabs"
         :key="tabRoute.fullPath"
-        :class="(selectedTab && selectedTab.fullPath === tabRoute.fullPath) ? 'ant-menu-item-selected' : ''"
         :ref="tabRoute.fullPath"
+        :class="(selectedTab && selectedTab.fullPath === tabRoute.fullPath) ? 'ant-menu-item-selected' : ''"
       >
         <long-press
           :value="{tabRoute, $router}"
@@ -37,14 +39,18 @@ export default {
     ...mapActions(["cancelATab", "openNewTab"]),
     routingJump ({key}) {
       this.$router.push(key)
+    },
+    preventDefaultBehavior({selectedKeys}) {
+      if (!Object.isFrozen(selectedKeys)) {
+        selectedKeys.splice(0, selectedKeys.length)
+        Object.freeze(selectedKeys)
+      }
     }
   },
-  watch: {},
   computed: {
     ...mapGetters(["openedTabs", "internationalize", "selectedTab"])
   },
   mounted () {
-    window.console.log(this.$route)
   }
 };
 </script>

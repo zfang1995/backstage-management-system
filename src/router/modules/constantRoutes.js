@@ -26,7 +26,14 @@ export default [
         // vue-schart组件
         path: '/charts',
         component: components.charts,
-        meta: { title: 'charts', aIcon: 'pie-chart' }
+        meta: { title: 'charts', aIcon: 'pie-chart' },
+        children: [
+          {
+            path: 'test',
+            components: components.page404,
+            meta: { title: 'Table', aIcon: 'table' }
+          }
+        ]
       }
     ]   
   },

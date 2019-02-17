@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     handleSubmit(e) {
-      e.preventDefault();
+      e.preventDefaultBehavior();
       this.form.validateFields((err, values) => {
         if (!err) {
           window.console.log("Received values of form: ", values);

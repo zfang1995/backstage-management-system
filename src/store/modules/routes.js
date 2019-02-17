@@ -45,7 +45,7 @@ function resolveChildren (route) {
   }
 }
 
-let permission = {
+let routes = {
   state: {
     routes: constantRoutes.map(route => {
       let context = ''
@@ -83,4 +83,4 @@ let permission = {
   }
 }
 
-export default permission
+export default routes
