@@ -1,5 +1,9 @@
 # backstage-management-system
-临摹自 https://github.com/PanJiaChen/vue-element-admin ，使用 ant-design-vue 代替了 element-ui。
+模仿自 https://github.com/PanJiaChen/vue-element-admin ，对原项目做了以下变更：  
+1. 使用 ant-design-vue 代替了 element-ui。
+2. 重新设计了项目文件架构
+3. 编写了新的说明文档
+    
 ## Project setup
 ```
 yarn install
