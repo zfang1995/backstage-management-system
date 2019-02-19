@@ -2,6 +2,10 @@ const path = require('path')
 const VueComponentsIndex = require('./src/utils/vue-cli-plugin-componentsIndex/webpack-plugin-vueComponentsIndex')
 
 module.exports = {
+  transpileDependencies: [
+    'vue-echarts',
+    'resize-detector'
+  ],
   chainWebpack: (config) => {
     // cofigure vue-svg-loader
     const svgRule = config.module.rule('svg');

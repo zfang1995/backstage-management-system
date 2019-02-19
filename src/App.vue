@@ -29,4 +29,7 @@ export default {
   font-size: 24px;
   /* color: white; */
 }
+.echarts {
+  margin: auto;
+}
 </style>

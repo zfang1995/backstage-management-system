@@ -1,37 +1,52 @@
-import * as components from '@/components'
+import {homepage, dashboard, icon, table, charts, polar, pie, treeRadial, loginPage, page404, barAnimation} from '@/components'
 
 export default [
   {
     path: '',
-    component: components.homepage,
+    component: homepage,
     meta: { title: 'homepage' },
     redirect: '/dashboard',
     children: [
       {
         path: '/dashboard',
-        component: components.dashboard,
+        component: dashboard,
         meta: { title: 'dashboard', aIcon: 'dashboard' }
       },
       {
         path: '/icon',
-        component: components.icon,
+        component: icon,
         meta: { title: 'icons', iconFont: 'icon-gongju' }
       },
       {
         path: '/table',
-        component: components.table,
+        component: table,
         meta: { title: 'Table', aIcon: 'table' }
       },
       {
         // vue-schart组件
         path: '/charts',
-        component: components.charts,
+        component: charts,
         meta: { title: 'charts', aIcon: 'pie-chart' },
         children: [
           {
-            path: 'test',
-            components: components.page404,
-            meta: { title: 'Table', aIcon: 'table' }
+            path: 'polar',
+            component: polar,
+            meta: { title: 'polar', aIcon: 'table' }
+          },
+          {
+            path: 'pie',
+            component: pie,
+            meta: { title: 'pie', aIcon: 'pie-chart' }
+          },
+          {
+            path: 'tree-radial',
+            component: treeRadial,
+            meta: { title: 'treeRadial', aIcon: 'pie-chart' }
+          },
+          {
+            path: 'bar-animation',
+            component: barAnimation,
+            meta: { title: 'barAnimation', aIcon: 'bar-chart' }
           }
         ]
       }
@@ -88,7 +103,7 @@ export default [
   // },
   {
     path: '/login',
-    component: components.loginPage,
+    component: loginPage,
     meta: { title: 'login' }
   },
   {
@@ -97,7 +112,7 @@ export default [
   },
   {
     path: '/404',
-    component: components.page404,
+    component: page404,
     meta: { title: '404' }
   } 
 ]

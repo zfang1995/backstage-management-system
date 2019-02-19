@@ -1,4 +1,5 @@
 import { default as $router , asyncRoutes, constantRoutes } from '@/router'
+import lodash from 'lodash'
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -34,25 +35,19 @@ function filterAsyncRouter(routes, roles) {
   return res
 }
 
-function resolveChildren (route) {
+function resolveRoute (route, context = '', cloneRoute = true) {
+  if (cloneRoute) route = lodash.cloneDeep(route)
+  route.path = $router.resolve(route.path, context, true).route.path
   if (route.children) {
-    let context = route.path
-    route.children = route.children.map(route => {
-      route.path = $router.resolve(route.path, context).route.path
-      resolveChildren(route)
-      return route
-    })
+    context = route
+    route.children = route.children.map(route => resolveRoute(route, context, false))
   }
+  return route
 }
 
 let routes = {
   state: {
-    routes: constantRoutes.map(route => {
-      let context = ''
-      route.path = $router.resolve(route.path, context).route.path
-      resolveChildren(route, context)
-      return route
-    }),
+    routes: constantRoutes.map(route => resolveRoute(route)),
     addRoutes: []
   },
   mutations: {

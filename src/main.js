@@ -13,11 +13,10 @@ import {i18n} from './store/modules/i18n'
 import { iconFont } from "@/assets/icons/"
 import appLink from "@/assets/appLink"
 import longPress from 'vue-longpress'
-import ECharts from 'vue-echarts'
-
+import VCharts from 'vue-echarts'
 
 Vue.use(Antd);
-Vue.component('v-chart', ECharts)
+Vue.component('v-chart', VCharts)
 Vue.component('iconFont', iconFont);
 Vue.component('appLink', appLink);
 Vue.component('longPress', longPress);
