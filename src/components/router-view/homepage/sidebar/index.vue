@@ -20,7 +20,7 @@
           <app-link :to="route.path" :_slot="'title'" v-if="route.meta">
             <a-icon v-if="route.meta.aIcon" :type="route.meta.aIcon"/>
             <icon-font v-else :type="route.meta.iconFont"></icon-font>
-            <span>{{ internationalize(route.meta.title) }}</span>
+            <span>{{ internationalize(route.meta.title || route.name) }}</span>
           </app-link>
         </a-menu-item>
         <sub-menu v-else :menuInfo="route" :key="route.path" :internationalize="__internationalize()"></sub-menu>

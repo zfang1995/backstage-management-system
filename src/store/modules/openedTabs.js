@@ -1,21 +1,18 @@
-
+import $router from '@/router'
 export default {
   state: {
-    openedTabs: [],
     pathsOfOpenedTabs: [],
     selectionOrder: [] // type: string array
   },
   mutations: {
-    addATab: ({openedTabs, pathsOfOpenedTabs}, tabRoute) => {
+    addATab: ({ pathsOfOpenedTabs}, tabRoute) => {
       // tabRoute.meta.showing = true
-      openedTabs.push(tabRoute)
       pathsOfOpenedTabs.push(tabRoute.fullPath)
     },
     removeATab: (state, tabRoute) => {
       let index = state.pathsOfOpenedTabs.findIndex(element => element === tabRoute.fullPath)
       // state.openedTabs[index].meta.showing = false
       state.pathsOfOpenedTabs.splice(index, 1)
-      state.openedTabs.splice(index, 1)
       state.selectionOrder = state.selectionOrder.filter(element => element.fullPath !== tabRoute.fullPath)
     },
     selectATab: (state, tabRoute) => {
@@ -45,13 +42,16 @@ export default {
   },
   getters: {
     openedTabs (state) {
-      return state.openedTabs
+      return state.pathsOfOpenedTabs.map(e => $router.resolve(e, '').route)
     },
     selectedTab ({selectionOrder}) {
       return selectionOrder[selectionOrder.length - 1]
     },
     includes (state) {
       return (tabRoute) => state.pathsOfOpenedTabs.includes(tabRoute.fullPath);
+    },
+    namesOfOpenedTabs (state, {openedTabs}) {
+      return openedTabs.map(e => e.name || e.meta.title)
     }
   }
 }

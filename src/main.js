@@ -8,8 +8,8 @@ import axios from 'axios'
 import 'babel-polyfill'
 import localforage from 'localforage'
 import vueComponentPopup from './utils/vue-component-popup'
-import {i18n} from './store/modules/i18n'
-// import '@/assets/styles/index.scss'
+import {i18n} from './store/modules/i18n' // Internationalization
+import '@/assets/styles/variables.scss'
 import { iconFont } from "@/assets/icons/"
 import appLink from "@/assets/appLink"
 import longPress from 'vue-longpress'
@@ -34,3 +34,4 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount('#app');
+

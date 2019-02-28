@@ -1,4 +1,4 @@
-import {homepage, dashboard, icon, table, charts, polar, pie, treeRadial, loginPage, page404, barAnimation} from '@/components'
+import {homepage, dashboard, icons, table, charts, polar, pie, treeRadial, loginPage, page404, barAnimation} from '@/components'
 
 export default [
   {
@@ -13,8 +13,9 @@ export default [
         meta: { title: 'dashboard', aIcon: 'dashboard' }
       },
       {
-        path: '/icon',
-        component: icon,
+        path: '/icons',
+        name: 'icons',
+        component: icons,
         meta: { title: 'icons', iconFont: 'icon-gongju' }
       },
       {

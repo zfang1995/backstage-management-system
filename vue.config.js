@@ -30,10 +30,15 @@ module.exports = {
     //   .rule('vue')
     //     .test(/\.vue$/)
     //     .use('componentsIndex')
-    //       .loader(path.resolve('./src/utils/webpack-loader-vueComponentsIndex'))
+    //       .loader(path.resolve('./src/utils/webpack-loadyer-vueComponentsIndex'))
   },
   configureWebpack: {
-    plugins: [new VueComponentsIndex()],
+    plugins: [new VueComponentsIndex({
+      rules: {
+        './src/components': ['.vue'],
+        './src/assets': [ '.svg', 'index.js']
+      }
+    })],
     devtool: 'source-map'
   }
 };

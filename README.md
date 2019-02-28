@@ -3,6 +3,7 @@
 1. 使用 ant-design-vue 代替了 element-ui。
 2. 重新设计了项目文件架构
 3. 编写了新的说明文档
+4. 使用 vuex-persistedstate 
     
 ## Project setup
 ```
