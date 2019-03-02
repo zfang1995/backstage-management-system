@@ -5,6 +5,7 @@
 3. 编写了新的说明文档
 4. 使用 vuex-persistedstate 
     
+## 该项目还在开发中。。
 ## Project setup
 ```
 yarn install
