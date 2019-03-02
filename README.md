@@ -45,7 +45,7 @@ yarn run lint
 - src\
 | |
 | - APP.vue
-| - assets\ // 存放允许被 `src\` 目录内的任何文件引用的全局资源。
+| - assets\ // 存放允许被 `src\` 目录内的任何文件直接引用的全局资源。
 | - components\ // 存放被 APP.vue 直接引用的子组件
 | | 
 | | - child-component-a\
