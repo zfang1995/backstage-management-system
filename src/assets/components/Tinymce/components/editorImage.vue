@@ -1,9 +1,9 @@
 <template>
   <div class="upload-container">
-    <el-button :style="{background:color,borderColor:color}" icon="el-icon-upload" size="mini" type="primary" @click=" dialogVisible=true">上传图片
-    </el-button>
-    <el-dialog :visible.sync="dialogVisible">
-      <el-upload
+    <a-button :style="{background:color,borderColor:color}" icon="a-icon-upload" size="small" type="primary" @click=" dialogVisible=true">上传图片
+    </a-button>
+    <a-modal :visible.sync="dialogVisible" @cancel="dialogVisible = false" @ok="handleSubmit">
+      <a-upload
         :multiple="true"
         :file-list="fileList"
         :show-file-list="true"
@@ -13,11 +13,11 @@
         class="editor-slide-upload"
         action="https://httpbin.org/post"
         list-type="picture-card">
-        <el-button size="small" type="primary">点击上传</el-button>
-      </el-upload>
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="handleSubmit">确 定</el-button>
-    </el-dialog>
+        <a-button size="small" type="primary">点击上传</a-button>
+      </a-upload>
+      <!-- <a-button @click="dialogVisible = false">取 消</a-button>
+      <a-button type="primary" @click="handleSubmit">确 定</a-button> -->
+    </a-modal>
   </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
       const _URL = window.URL || window.webkitURL
       const fileName = file.uid
       this.listObj[fileName] = {}
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const img = new Image()
         img.src = _URL.createObjectURL(file)
         img.onload = function() {
@@ -96,7 +96,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .editor-slide-upload {
   margin-bottom: 20px;
-  /deep/ .el-upload--picture-card {
+  /deep/ .a-upload--picture-card {
     width: 100%;
   }
 }

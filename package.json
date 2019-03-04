@@ -13,6 +13,7 @@
     "cli-service": "vue-cli-service"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^2.0.0",
     "ant-design-vue": "^1.2.4",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
@@ -20,6 +21,7 @@
     "localforage": "1.7.3",
     "mavon-editor": "^2.6.17",
     "mint-ui": "^2.2.13",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.5.17",
     "vue-count-to": "^1.0.13",
     "vue-cropperjs": "^2.2.2",

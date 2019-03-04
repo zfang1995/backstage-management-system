@@ -7,7 +7,7 @@ import {i18n_store as i18n} from './modules/i18n'
 import routes from './modules/routes'
 import openedTabs from './modules/openedTabs'
 import userMeta from './modules/userMeta'
-
+import api from './modules/api'
 
 Vue.use(vuex)
 export default new vuex.Store({
@@ -16,6 +16,6 @@ export default new vuex.Store({
     paths: ['userMeta', 'openedTabs.pathsOfOpenedTabs']
   })],
   modules: {
-    i18n, routes, openedTabs, userMeta
+    i18n, routes, openedTabs, userMeta, api
   }
 })

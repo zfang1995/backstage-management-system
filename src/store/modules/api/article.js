@@ -8,6 +8,14 @@ export function fetchList(query) {
   })
 }
 
+export function list(query) {
+  return request({
+    url: '/article/list',
+    method: 'get',
+    params: query
+  })
+}
+
 export function fetchArticle(id) {
   return request({
     url: '/article/detail',
@@ -38,4 +46,12 @@ export function updateArticle(data) {
     method: 'post',
     data
   })
+}
+
+export default {
+  fetchList,
+  fetchArticle,
+  fetchPv,
+  createArticle,
+  updateArticle
 }

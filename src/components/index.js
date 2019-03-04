@@ -13,7 +13,7 @@ export let dndList = () => import('@/components/router-view/homepage/main_body/r
 export let dragKanban = () => import('@/components/router-view/homepage/main_body/router-view/components/router-view/drag-kanban.vue') 
 export let dropzone = () => import('@/components/router-view/homepage/main_body/router-view/components/router-view/dropzone.vue') 
 export let markdown = () => import('@/components/router-view/homepage/main_body/router-view/components/router-view/markdown.vue') 
-export let tinymce = () => import('@/components/router-view/homepage/main_body/router-view/components/router-view/tinymce.vue') 
+export let tinymce = () => import('@/components/router-view/homepage/main_body/router-view/components/router-view/Tinymce.vue') 
 export let barChart = () => import('@/components/router-view/homepage/main_body/router-view/dashboard/admin/components/BarChart.vue') 
 export let boxCard = () => import('@/components/router-view/homepage/main_body/router-view/dashboard/admin/components/BoxCard.vue') 
 export let lineChart = () => import('@/components/router-view/homepage/main_body/router-view/dashboard/admin/components/LineChart.vue') 

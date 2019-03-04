@@ -1,13 +1,12 @@
-<template>
-    <div></div>
-</template>
-
 <script>
-    export default {
-        name: "tinymce"
-    }
+import tinymce from '@/assets/components/Tinymce'
+
+export default {
+  functional: true,
+  render: function(createElement) {
+    return createElement(
+      tinymce
+    );
+  }
+};
 </script>
-
-<style scoped>
-
-</style>

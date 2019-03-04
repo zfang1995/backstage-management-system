@@ -14,6 +14,7 @@ import { iconFont } from "@/assets/icons/"
 import appLink from "@/assets/appLink"
 import longPress from 'vue-longpress'
 import VCharts from 'vue-echarts'
+import '@/assets/mockData'
 
 Vue.use(Antd);
 Vue.component('v-chart', VCharts)
@@ -22,7 +23,6 @@ Vue.component('appLink', appLink);
 Vue.component('longPress', longPress);
 
 Vue.use(vueComponentPopup);
-
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$localforage = localforage;

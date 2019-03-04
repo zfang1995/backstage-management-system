@@ -1,4 +1,7 @@
-import {homepage, dashboard, icons, table, charts, polar, pie, treeRadial, loginPage, page404, barAnimation} from '@/components'
+import {
+  homepage, dashboard, icons, table, charts, polar, pie, treeRadial, loginPage, page404,
+  barAnimation, components, tinymce, dndList
+} from '@/components'
 
 export default [
   {
@@ -50,8 +53,25 @@ export default [
             meta: { title: 'barAnimation', aIcon: 'bar-chart' }
           }
         ]
+      },
+      {
+        path: '/components',
+        component: components,
+        meta: {title: 'components', aIcon: 'tool'},
+        children: [
+          {
+            path: 'tinymce',
+            component: tinymce,
+            meta: {title: 'tinymce'}
+          },
+          {
+            path: 'dnd-list',
+            component: dndList,
+            meta: {title: 'dndList'}
+          }
+        ]
       }
-    ]   
+    ]
   },
 
   //     {

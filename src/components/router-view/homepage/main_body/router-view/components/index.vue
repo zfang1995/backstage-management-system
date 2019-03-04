@@ -1,10 +1,10 @@
 <template>
-    <div></div>
+    <router-view />
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "components"
     }
 </script>
 
