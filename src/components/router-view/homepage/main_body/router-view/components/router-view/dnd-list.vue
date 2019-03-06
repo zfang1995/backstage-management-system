@@ -7,7 +7,7 @@ export default {
   functional: true,
   render: function(createElement, context) {
     context.data.props = {
-      list1: $store.getters.article('fetchList')
+      list1: $store.state.api.article.list.data.items
     }
     return createElement(
       dndList,

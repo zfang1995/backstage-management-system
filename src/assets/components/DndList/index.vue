@@ -30,18 +30,14 @@ import draggable from 'vuedraggable'
 export default {
   name: 'DndList',
   components: { draggable },
-  computed: {
-    list1 () {
-      return this.$store.state.api.article.list.data.items
-    }
-  },
+  // -> articleList.vue
   props: {
-    // list1: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // },
+    list1: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
     list2: {
       type: Array,
       default() {

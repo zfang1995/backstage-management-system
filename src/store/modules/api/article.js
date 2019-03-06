@@ -48,11 +48,16 @@ export function updateArticle(data) {
   })
 }
 
+// -> /api/article.js
+
 export default {
-  fetchList,
-  fetchArticle,
-  fetchPv,
-  createArticle,
-  updateArticle,
-  list
+  list: {
+    get: fetchList,
+    placeholder: {data: {items: []}}
+  },
+  detail: {
+    get: fetchArticle,
+    placeholder: 'loading...'
+  },
+  NAME: 'article'
 }
