@@ -13,47 +13,86 @@ function copyObjectKeys (obj) {
   return newObj
 }
 
-let cachedRequests;
-travelJSON({
-  article: copyObjectKeys(api_article)
-}, (element, parentObject) => {
-  if (typeof element === 'object') {
-    parentObject[element] = new Proxy(cachedRequests.article, {
-      set (obj, prop, val, receiver) {
-        if (obj[prop] === val) return ;
-        $store.commit('UPDATE_ARTICLE', {
-          modulePath: prop,
-          data: val,
-          receiver
-        })
-      }
-    })
-  } 
-})
 
-export default {
+let store = {
   state: {
-    article: {}
+    cachedRequests: {}
   },
   mutations: {
-    UPDATE_ARTICLE (state, {modulePath, data}) {
-      cachedRequests.article[modulePath] = data
+    UPDATE_CACHE (state, {data, obj, prop}) {
+      try {
+        Reflect.set(obj, prop, data)
+      } catch (e) {
+        window.console.log('obj:', obj)
+        window.console.log('prop:', prop)
+        window.console.log('data:', data)
+        throw e
+      }
     }
   },
   actions: {
 
   },
   getters: {
-    article ({article}) {
+    article ({cachedRequests: {article}}) {
       return query => {
-        if (!article[query]) {
-          api_article[query]().then(response => { $store.commit('UPDATE_ARTICLE', {
-            modulePath: query,
+        window.console.log('article',article)
+        if (article && !article[query]) {
+          api_article[query]().then(response => { $store.commit('UPDATE_CACHE', {
+            obj: article,
+            prop: query,
             data: response
           }) })
         }
-        return article[query]
+        return article ? article[query] : null
       }
     }
   }
 }
+
+export default store
+
+let cachedRequests = {
+  article: copyObjectKeys(api_article)
+}
+
+// let vuex observe given json
+let commitChangesToVuex = () => {
+  return {
+    set (obj, prop, val) {
+      if (obj[prop] === val) return ;
+      if (typeof val === 'object') { // 如果新指定的值是对象类型，就观察该对象
+        observeJson(val, commitChangesToVuex).then(data => {
+          $store.commit('UPDATE_CACHE', {data, obj, prop})
+        })
+      }
+      else {
+        $store.commit('UPDATE_CACHE', {data: val, obj, prop})
+      }
+    }
+  }
+}
+
+let observeJson = async (json, observer) => {
+  let processedJson = await travelJSON({
+    json,
+    onMeetNode: ({
+      element,
+      propName,
+      parentObject
+    }) => {
+      if (element && typeof element === 'object') {
+        let tmp = new Proxy(element, observer());
+        parentObject[propName] = tmp
+      }
+    }
+  })
+  return processedJson
+}
+
+observeJson(cachedRequests, commitChangesToVuex).then(json => {
+  $store.commit('UPDATE_CACHE', {obj: store.state, prop: 'cachedRequests', data: json})
+})
+
+
+

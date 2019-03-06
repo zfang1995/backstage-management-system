@@ -53,5 +53,6 @@ export default {
   fetchArticle,
   fetchPv,
   createArticle,
-  updateArticle
+  updateArticle,
+  list
 }

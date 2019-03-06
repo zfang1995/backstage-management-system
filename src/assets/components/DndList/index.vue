@@ -32,13 +32,7 @@ export default {
   components: { draggable },
   computed: {
     list1 () {
-      let list
-      try {
-        list = this.$store.getters.article('fetchList').data.items
-        return list
-      } catch (e) {
-        return []
-      }
+      return this.$store.state.api.article.list.data.items
     }
   },
   props: {
