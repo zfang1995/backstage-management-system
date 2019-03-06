@@ -1,21 +1,17 @@
 <template>
   <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
     <editor api-key="j58m3v4hgvdpel2jt3i5gvhjololzbp44adg0o0borpx160w" :init="initOptions" />
-    <div class="editor-custom-btn-container">
-      <editorImage color="#1890ff" class="editor-upload-btn"/>
-    </div>
   </div>
 </template>
 
 <script>
-import editorImage from './components/editorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
 import editor from '@tinymce/tinymce-vue'
 
 export default {
   name: 'Tinymce',
-  components: { editorImage, editor },
+  components: { editor },
   props: {
     id: {
       type: String,
