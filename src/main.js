@@ -10,7 +10,7 @@ import localforage from 'localforage'
 import vueComponentPopup from './utils/vue-component-popup'
 import {i18n} from './store/modules/i18n' // Internationalization
 import '@/assets/styles/variables.scss'
-import { iconFont } from "@/assets/icons/"
+import iconFont from "@/assets/components/iconFont"
 import appLink from "@/assets/appLink"
 import longPress from 'vue-longpress'
 import VCharts from 'vue-echarts'

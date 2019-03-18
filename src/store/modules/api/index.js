@@ -18,19 +18,19 @@ import $store from '@/store'
 
 let handler = function (api) {
   return {
-    get (obj, requestName ) {
-      if (obj[requestName]) {
-        return obj[requestName]
+    get (cache, requestName ) {
+      if (cache[requestName]) {
+        return cache[requestName]
       } 
       else if (api[requestName]) {
         api[requestName].get().then(res => {
-          obj[requestName] = res
-          $store.commit('UPDATE_STATE', {api, obj})
+          cache[requestName] = res
+          $store.commit('UPDATE_STATE', {api, cache}) // notify dependencies to get new data.
         })
         return api[requestName].placeholder
       }
       else {
-        return obj[requestName]
+        return cache[requestName]
       }
     }
   }

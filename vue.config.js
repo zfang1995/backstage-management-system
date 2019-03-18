@@ -7,7 +7,7 @@ module.exports = {
     'resize-detector'
   ],
   chainWebpack: (config) => {
-    // cofigure vue-svg-loader
+    // configure vue-svg-loader
     const svgRule = config.module.rule('svg');
     svgRule.uses.clear();
     svgRule
@@ -25,19 +25,15 @@ module.exports = {
         })
     }
     types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
-    // configure vue-components-index
-    // config.module
-    //   .rule('vue')
-    //     .test(/\.vue$/)
-    //     .use('componentsIndex')
-    //       .loader(path.resolve('./src/utils/webpack-loadyer-vueComponentsIndex'))
   },
   configureWebpack: {
     plugins: [new VueComponentsIndex({
       rules: {
         './src/components': ['.vue'],
-        './src/assets': [ '.svg', 'index.js']
-      }
+        './src/assets': [ 'index.js'],
+        './src/assets/icons/svg': ['.svg']
+      },
+      debug: false
     })],
     devtool: 'source-map'
   }

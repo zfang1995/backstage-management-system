@@ -1,5 +1,5 @@
 import {
-  homepage, dashboard, icons, table, charts, polar, pie, treeRadial, loginPage, page404,
+  homepage, dashboard, table, charts, polar, pie, treeRadial, loginPage, page404,
   barAnimation, components, tinymce, dndList
 } from '@/components'
 
@@ -14,12 +14,6 @@ export default [
         path: '/dashboard',
         component: dashboard,
         meta: { title: 'dashboard', aIcon: 'dashboard' }
-      },
-      {
-        path: '/icons',
-        name: 'icons',
-        component: icons,
-        meta: { title: 'icons', iconFont: 'icon-gongju' }
       },
       {
         path: '/table',
